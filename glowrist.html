@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glowrist · Pre-order Flowers · Dublin 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/glowrist.css">
+</head>
+<body>
+
+<!-- ============ GARLAND + HEADER ============ -->
+<div class="swag-wrap"><svg id="swag" class="swag" width="100%" aria-hidden="true"></svg></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="brand-script">Glowrist</span>
+    <span class="brand-sub">Florists · Est. MMXXI · Dublin 2</span>
+  </a>
+  <nav class="nav">
+    <a href="#batches">Harvest Batches</a>
+    <a href="#garden">My Garden</a>
+    <a href="#how">How it Works</a>
+    <a href="#office" class="role-link hidden" data-role="owner">Shop Office</a>
+    <a href="#verifier" class="role-link hidden" data-role="verifier">Verifier Desk</a>
+    <a href="#grower" class="role-link hidden" data-role="grower">Grower Ledger</a>
+  </nav>
+  <div class="top-actions">
+    <button class="icon-btn" id="btn-settings" title="Settings: contract addresses and Pinata CIDs">⚙</button>
+    <button class="stamp-btn" id="btn-connect">Connect MetaMask</button>
+  </div>
+</header>
+
+<!-- wallet ribbon -->
+<div class="ribbon" id="ribbon">
+  <div class="ribbon-inner">
+    <span><em>Wallet</em> <b id="rb-account">not connected</b></span>
+    <span><em>Network</em> <b id="rb-network">-</b></span>
+    <span><em>GloomEuro</em> <b id="rb-balance">-</b></span>
+    <span id="rb-roles"></span>
+  </div>
+</div>
+
+<div class="notice hidden" id="setup-notice">
+  <strong>Almost ready.</strong> Contract addresses are not set yet, so you are seeing sample batches.
+  Deploy <code>GloomEuro</code> and <code>GlowristPreorder</code> in Remix, then paste the addresses in <a href="#" id="notice-settings">Settings ⚙</a>.
+</div>
+<div class="notice notice-warn hidden" id="network-notice">
+  MetaMask is on the wrong network. <button class="link-btn" id="btn-switch">Switch to <span id="net-name"></span></button>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="kicker">— Fresh from named harvests —</p>
+    <h1>Reserve tomorrow's blooms, <i>today.</i></h1>
+    <p class="lead">
+      Pick a future harvest, pay in GloomEuro, and your money waits safely in escrow.
+      You receive a reservation NFT for your stems. Our grower is paid in three verified stages,
+      and you collect your flowers in Dublin 2 when the batch arrives.
+    </p>
+    <div class="hero-cta">
+      <a href="#batches" class="btn btn-rose">See harvest batches</a>
+      <a href="#how" class="btn btn-ghost">How it works</a>
+    </div>
+    <div class="hero-facts">
+      <div><b>1,200</b><span>regular customers</span></div>
+      <div><b>3</b><span>verified grower stages</span></div>
+      <div><b>100%</b><span>refund if a crop fails</span></div>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="oval-frame">
+      <svg viewBox="0 0 320 360" class="bouquet" aria-hidden="true">
+        <use href="#fl-sprig" x="170" y="30" width="110" height="120"/>
+        <use href="#fl-sprig" x="40" y="30" width="110" height="120" transform="scale(-1 1) translate(-190 0)"/>
+        <use href="#fl-leaf" x="30" y="170" width="90" height="48" transform="rotate(-30 75 194)"/>
+        <use href="#fl-leaf" x="200" y="170" width="90" height="48" transform="rotate(210 245 194)"/>
+        <use href="#fl-leaf" x="70" y="220" width="80" height="44" transform="rotate(-60 110 242)"/>
+        <use href="#fl-leaf" x="170" y="220" width="80" height="44" transform="rotate(240 210 242)"/>
+        <use href="#fl-tulip" x="64" y="70" width="44" height="70" transform="rotate(-18 86 105)"/>
+        <use href="#fl-tulip" x="212" y="70" width="44" height="70" transform="rotate(18 234 105)"/>
+        <use href="#fl-blossom" x="56" y="150" width="46" height="46"/>
+        <use href="#fl-blossom" x="218" y="150" width="46" height="46"/>
+        <use href="#fl-peony" x="90" y="120" width="80" height="80"/>
+        <use href="#fl-peony" x="160" y="132" width="70" height="70"/>
+        <use href="#fl-rose" x="120" y="70" width="80" height="80"/>
+        <use href="#fl-rose" x="84" y="180" width="60" height="60"/>
+        <use href="#fl-rose" x="176" y="190" width="56" height="56"/>
+        <use href="#fl-bud" x="140" y="34" width="28" height="40"/>
+        <use href="#fl-bud" x="110" y="50" width="22" height="32" transform="rotate(-20 121 66)"/>
+        <use href="#fl-bud" x="190" y="54" width="22" height="32" transform="rotate(20 201 70)"/>
+        <use href="#fl-blossom" x="138" y="196" width="38" height="38"/>
+        <path d="M128,250 L160,330 L192,250" fill="#C9B48E" stroke="#9C845A" stroke-width="1.5"/>
+        <path d="M140,262 L160,312 L180,262" fill="none" stroke="#9C845A" stroke-width="1" opacity=".6"/>
+        <use href="#fl-ribbon" x="120" y="246" width="80" height="54"/>
+      </svg>
+      <div class="frame-caption">
+        <span class="script">Valentine's Roses</span>
+        <span class="small-caps">Pre-order now open</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>❦</span></div>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section" id="how">
+  <div class="section-head">
+    <p class="kicker">— The Glowrist way —</p>
+    <h2>From seed to your hands</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="num">I</span><h4>Choose a batch</h4><p>Pick a future harvest of roses, peonies or tulips from a named grower.</p></div>
+    <div class="step"><span class="num">II</span><h4>Pay into escrow</h4><p>Pay in GloomEuro. The smart contract holds your money and checks there is stock.</p></div>
+    <div class="step"><span class="num">III</span><h4>Get your NFT</h4><p>A reservation NFT shows the batch, stems, origin and deadline.</p></div>
+    <div class="step"><span class="num">IV</span><h4>Grower is paid in stages</h4><p>Planted 30%, harvested & shipped 40%, arrived in Dublin 30%. Each stage is checked by a verifier.</p></div>
+    <div class="step"><span class="num">V</span><h4>Collect in the shop</h4><p>Sign with your wallet in store. The reservation NFT is burned and you take your flowers.</p></div>
+    <div class="step"><span class="num">VI</span><h4>Keep a keepsake</h4><p>You get a new keepsake NFT with the flower picture and its origin, in your name.</p></div>
+  </div>
+  <p class="fineprint">If a crop fails, or the batch is not here by the deadline, you claim back the full amount from escrow.</p>
+</section>
+
+<!-- ============ BATCHES ============ -->
+<section class="section paper" id="batches">
+  <div class="section-head">
+    <p class="kicker">— Now taking pre-orders —</p>
+    <h2>Harvest Batches</h2>
+    <button class="btn btn-ghost btn-sm" id="btn-refresh">↻ Refresh</button>
+  </div>
+  <div class="batch-grid" id="batch-grid">
+    <p class="empty">Loading batches…</p>
+  </div>
+</section>
+
+<!-- ============ MY GARDEN ============ -->
+<section class="section" id="garden">
+  <div class="section-head">
+    <p class="kicker">— Your reservations & keepsakes —</p>
+    <h2>My Garden</h2>
+  </div>
+  <div id="garden-body">
+    <p class="empty">Connect your MetaMask wallet to see your reservations.</p>
+  </div>
+</section>
+
+<!-- ============ GROWER ============ -->
+<section class="section paper hidden" id="grower">
+  <div class="section-head">
+    <p class="kicker">— For our growers —</p>
+    <h2>Grower Ledger</h2>
+  </div>
+  <div id="grower-body"></div>
+</section>
+
+<!-- ============ VERIFIER ============ -->
+<section class="section hidden" id="verifier">
+  <div class="section-head">
+    <p class="kicker">— Independent checks —</p>
+    <h2>Verifier Desk</h2>
+  </div>
+  <p class="center muted">Each stage releases a payment to the grower from escrow. Stages must go in order.</p>
+  <div id="verifier-body"></div>
+</section>
+
+<!-- ============ SHOP OFFICE (OWNER) ============ -->
+<section class="section paper hidden" id="office">
+  <div class="section-head">
+    <p class="kicker">— Staff only —</p>
+    <h2>Shop Office</h2>
+  </div>
+
+  <div class="office-grid">
+    <form class="card form-card" id="form-batch">
+      <h3>Create a harvest batch</h3>
+      <label>Batch name <input name="name" required placeholder="Valentine Red Roses"></label>
+      <label>Origin <input name="origin" required placeholder="Naivasha, Kenya"></label>
+      <div class="row2">
+        <label>Total stems <input name="stems" type="number" min="1" required value="10000"></label>
+        <label>Delivery deadline <input name="deadline" type="date" required></label>
+      </div>
+      <div class="row2">
+        <label>Customer price / stem (€) <input name="price" required value="1.50"></label>
+        <label>Grower cost / stem (€) <input name="cost" required value="0.50"></label>
+      </div>
+      <label>Grower wallet <input name="grower" required placeholder="0x…"></label>
+      <div class="row2">
+        <label>Reservation NFT art (Pinata CID)
+          <select name="resCidPick" class="cid-pick" data-target="resCid"></select>
+          <input name="resCid" placeholder="or paste CID">
+        </label>
+        <label>Keepsake NFT art (Pinata CID)
+          <select name="keepCidPick" class="cid-pick" data-target="keepCid"></select>
+          <input name="keepCid" placeholder="or paste CID">
+        </label>
+      </div>
+      <p class="calc" id="batch-calc"></p>
+      <button class="btn btn-rose" type="submit">Create batch</button>
+    </form>
+
+    <div class="stack">
+      <form class="card form-card" id="form-funds">
+        <h3>Issue test GloomEuro</h3>
+        <p class="muted small">Only Glowrist can issue test funds to customers.</p>
+        <label>Customer wallet <input name="to" required placeholder="0x…"></label>
+        <label>Amount (€) <input name="amount" required value="2000"></label>
+        <button class="btn btn-sage" type="submit">Issue funds</button>
+      </form>
+
+      <form class="card form-card" id="form-manage">
+        <h3>Manage a batch</h3>
+        <label>Batch <select name="batch" id="manage-batch"></select></label>
+        <label>Top-up amount (€) <input name="amount" value="500"></label>
+        <div class="btn-row">
+          <button class="btn btn-sage btn-sm" type="button" data-act="topup">Top up escrow</button>
+          <button class="btn btn-ghost btn-sm" type="button" data-act="withdraw">Withdraw revenue</button>
+          <button class="btn btn-danger btn-sm" type="button" data-act="cancel">Cancel (crop failed)</button>
+        </div>
+      </form>
+
+      <form class="card form-card" id="form-verifier">
+        <h3>Verifier wallet</h3>
+        <p class="muted small">Current: <code id="current-verifier">-</code></p>
+        <label>New verifier <input name="verifier" required placeholder="0x…"></label>
+        <button class="btn btn-ghost btn-sm" type="submit">Change verifier</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-orn">❧ ❦ ☙</div>
+  <p class="script big">Glowrist</p>
+  <p>Dublin 2, Ireland · Bouquets, weddings, events & premium imported stems</p>
+  <p class="fine">Educational blockchain prototype on a test network. GloomEuro is a simulated token, not real euro or e-money.
+  Customer names, addresses and order notes are never stored on-chain.</p>
+  <p class="fine"><a href="index.html">← Back to project home</a> · <a href="society.html">Society Credit Union</a></p>
+</footer>
+
+<!-- ============ RESERVE MODAL ============ -->
+<div class="modal" id="modal-reserve">
+  <div class="modal-card">
+    <button class="modal-x" data-close-modal>×</button>
+    <p class="kicker">— Reserve stems —</p>
+    <h3 id="rv-title">Batch</h3>
+    <p class="muted" id="rv-sub"></p>
+    <label>Number of stems <input type="number" id="rv-stems" min="1" value="100"></label>
+    <div class="rv-total"><span>Total held in escrow</span><b id="rv-total">€0.00</b></div>
+    <ol class="tx-steps">
+      <li id="rv-step1">Approve GloomEuro for the escrow contract</li>
+      <li id="rv-step2">Reserve stems & receive your NFT</li>
+    </ol>
+    <button class="btn btn-rose wide" id="rv-go">Approve & reserve</button>
+  </div>
+</div>
+
+<!-- ============ SETTINGS MODAL ============ -->
+<div class="modal" id="modal-settings">
+  <div class="modal-card wide-card">
+    <button class="modal-x" data-close-modal>×</button>
+    <p class="kicker">— Settings —</p>
+    <h3>Contracts & Pinata</h3>
+    <p class="muted small">Saved in this browser only. Leave a field empty to use the value from <code>js/config.js</code>.</p>
+    <div class="row2">
+      <label>GloomEuro (ERC-20) address <input id="st-gloom" placeholder="0x…"></label>
+      <label>GlowristPreorder (ERC-721) address <input id="st-pre" placeholder="0x…"></label>
+    </div>
+    <div class="row2">
+      <label>Network chain ID
+        <select id="st-chain">
+          <option value="11155111">Sepolia (11155111)</option>
+          <option value="1337">Ganache (1337)</option>
+          <option value="5777">Ganache (5777)</option>
+          <option value="31337">Hardhat (31337)</option>
+        </select>
+      </label>
+      <label>IPFS gateway <input id="st-gw" placeholder="https://gateway.pinata.cloud/ipfs/"></label>
+    </div>
+    <label>Flower art CIDs — one per line: <code>Label | CID</code>
+      <textarea id="st-cids" rows="6" placeholder="Red Rose - reservation | bafy..."></textarea>
+    </label>
+    <div class="btn-row">
+      <button class="btn btn-rose" id="st-save">Save</button>
+      <button class="btn btn-ghost" id="st-reset">Reset to config.js</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/abis.js"></script>
+<script src="js/common.js"></script>
+<script src="js/flowers.js"></script>
+<script src="js/glowrist.js"></script>
+</body>
+</html>

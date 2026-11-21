@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Society Credit Union · Tranchoryx Securities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/society.css">
+</head>
+<body>
+
+<!-- utility bar -->
+<div class="utility">
+  <div class="wrap utility-inner">
+    <span>Member-owned since 2013 · Sarnia, Ontario</span>
+    <span class="dotsep">10 branches across Southwestern Ontario</span>
+    <span class="proto-flag">Educational prototype · Test network only</span>
+  </div>
+</div>
+
+<header class="mainbar">
+  <div class="wrap mainbar-inner">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 48 48" class="logo-mark" aria-hidden="true">
+        <rect x="1" y="1" width="46" height="46" rx="12" fill="#0E2A47"/>
+        <path d="M24 10 L37 21 L37 37 L11 37 L11 21 Z" fill="none" stroke="#D4AF37" stroke-width="2.4" stroke-linejoin="round"/>
+        <rect x="20" y="25" width="8" height="12" fill="#D4AF37"/>
+        <path d="M8 22 L24 8 L40 22" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text"><b>Society</b> Credit Union<small>Tranchoryx Securities Platform</small></span>
+    </a>
+    <nav class="tabs" id="tabs">
+      <button data-tab="overview" class="active">Overview</button>
+      <button data-tab="investor">My Portfolio</button>
+      <button data-tab="verify">Verify Certificate</button>
+      <button data-tab="issuer" class="role-tab hidden">Issuer Desk</button>
+      <button data-tab="admin" class="role-tab hidden">Administrator</button>
+    </nav>
+    <div class="bar-actions">
+      <button class="icon-btn" id="btn-settings" title="Settings: contracts and Pinata CIDs">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3h-4l-.4 2.9a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1c.5.4 1.1.7 1.7 1L11 21h4l.4-2.9c.6-.3 1.2-.6 1.7-1l2.5 1 2-3.5zM13 15.5A3.5 3.5 0 1 1 13 8.5a3.5 3.5 0 0 1 0 7z"/></svg>
+      </button>
+      <button class="btn btn-gold" id="btn-connect">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 9h13a2 2 0 0 1 2 2v0" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16.5" cy="13" r="1.6" fill="currentColor"/></svg>
+        <span>Connect MetaMask</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="statusbar" id="statusbar">
+  <div class="wrap statusbar-inner">
+    <div><span class="lbl">Wallet</span><b id="sb-account" class="mono">Not connected</b></div>
+    <div><span class="lbl">Network</span><b id="sb-network">-</b></div>
+    <div><span class="lbl">Investor status</span><b id="sb-kyc">-</b></div>
+    <div><span class="lbl">TRXI balance</span><b id="sb-trxi">-</b></div>
+    <div id="sb-roles"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="alert alert-info hidden" id="setup-notice">
+    <b>Set up needed.</b> Contract addresses are not set yet. Deploy <code>TranchoryxSecurity</code> and then <code>TranchoryxInterest</code> in Remix and paste the addresses in <a href="#" id="notice-settings">Settings</a>.
+  </div>
+  <div class="alert alert-warn hidden" id="network-notice">
+    MetaMask is connected to the wrong network. <button class="linkish" id="btn-switch">Switch to <span id="net-name"></span></button>
+  </div>
+</div>
+
+<main>
+
+<!-- ======================= OVERVIEW ======================= -->
+<section class="tab-panel active" id="tab-overview">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Tranchoryx · Mortgage-backed securities</span>
+        <h1>Your mortgage-backed investments, recorded on one shared register.</h1>
+        <p class="hero-lead">Each authorised security is a single ERC-721 certificate held in an approved wallet.
+          Interest is worked out from the stored terms, funded first, claimed once and settled to your bank account.</p>
+        <div class="hero-actions">
+          <button class="btn btn-gold btn-lg" data-goto="investor">Open my portfolio</button>
+          <button class="btn btn-outline-light btn-lg" data-goto="verify">Verify a certificate</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="mini-cert">
+          <div class="mc-top"><span>TRANCHORYX</span><small>Security No. TRX-MBS-001</small></div>
+          <div class="mc-row"><span>Issuer</span><b>Society Credit Union</b></div>
+          <div class="mc-row"><span>Face value</span><b>C$100,000</b></div>
+          <div class="mc-row"><span>Annual coupon</span><b>6.00%</b></div>
+          <div class="mc-row"><span>Maturity</span><b>20 Nov 2028</b></div>
+          <div class="mc-seal">ERC-721</div>
+        </div>
+        <div class="hero-chip"><span class="pulse"></span> Interest paid once per record date</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap stats">
+    <div class="stat"><b>$1.25B</b><span>total assets (31 Dec 2025)</span></div>
+    <div class="stat"><b>25,000</b><span>members</span></div>
+    <div class="stat"><b>$737.5M</b><span>residential mortgages & HELOCs</span></div>
+    <div class="stat"><b id="ov-issued">-</b><span>securities on the register</span></div>
+  </div>
+
+  <div class="wrap section">
+    <div class="section-title">
+      <span class="eyebrow dark">How it works</span>
+      <h2>Four steps from approval to cash</h2>
+    </div>
+    <div class="flow">
+      <div class="flow-step"><div class="flow-ic">1</div><h4>Get approved</h4><p>Complete KYC/AML with the credit union, connect MetaMask and sign a message to prove the wallet is yours.</p></div>
+      <div class="flow-step"><div class="flow-ic">2</div><h4>Receive your certificate</h4><p>After payment through the bank, the issuer mints your security NFT. The same security ID can never be issued twice.</p></div>
+      <div class="flow-step"><div class="flow-ic">3</div><h4>Claim interest</h4><p>On each record date the coupon is recorded for the registered holder. You claim it once as TRXI tokens ($1 each).</p></div>
+      <div class="flow-step"><div class="flow-ic">4</div><h4>Redeem to your bank</h4><p>Request redemption. Tokens are locked, the administrator pays your verified account, then the tokens are burnt.</p></div>
+    </div>
+  </div>
+
+  <div class="wrap section two-col">
+    <div class="panel">
+      <div class="panel-head"><h3>Smart contracts</h3><span class="tag">Sepolia</span></div>
+      <div class="contract-line"><div><b>TranchoryxSecurity</b><small>ERC-721 · register of securities and holders</small></div><a id="ov-sec" class="mono" target="_blank" rel="noopener">not set</a></div>
+      <div class="contract-line"><div><b>TranchoryxInterest</b><small>ERC-20 · funded interest entitlements (TRXI)</small></div><a id="ov-int" class="mono" target="_blank" rel="noopener">not set</a></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><h3>Safeguards built into the code</h3></div>
+      <ul class="checks">
+        <li>No duplicate security IDs</li>
+        <li>Transfers only to approved wallets</li>
+        <li>Entitlements never exceed confirmed funding</li>
+        <li>One record, one claim, one settlement per coupon</li>
+        <li>Every action emits a time-stamped event</li>
+        <li>No personal or borrower data on-chain</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= INVESTOR ======================= -->
+<section class="tab-panel" id="tab-investor">
+  <div class="wrap section">
+    <div class="page-head">
+      <div><span class="eyebrow dark">My Portfolio</span><h2>Securities & interest</h2></div>
+      <button class="btn btn-ghost" id="btn-refresh">↻ Refresh</button>
+    </div>
+
+    <div class="onboard panel">
+      <div class="panel-head"><h3>Account onboarding</h3></div>
+      <div class="onboard-steps">
+        <div class="ob" id="ob-1"><div class="ob-ic">1</div><div><b>Connect wallet</b><p id="ob-1-text">Connect MetaMask to begin.</p></div></div>
+        <div class="ob" id="ob-2"><div class="ob-ic">2</div><div><b>Prove wallet ownership</b><p id="ob-2-text">Sign a free message. No gas, no transaction.</p><button class="btn btn-sm btn-navy" id="btn-sign">Sign message</button></div></div>
+        <div class="ob" id="ob-3"><div class="ob-ic">3</div><div><b>Issuer approval</b><p id="ob-3-text">Ask the credit union to approve this wallet after KYC/AML.</p><button class="btn btn-sm btn-navy" id="btn-request">Request approval</button></div></div>
+      </div>
+    </div>
+
+    <h3 class="block-title">My certificates</h3>
+    <div id="my-securities" class="cert-grid"><p class="empty">Connect your wallet to see your certificates.</p></div>
+
+    <h3 class="block-title">Coupon schedule</h3>
+    <div class="panel no-pad">
+      <table class="table" id="coupon-table">
+        <thead><tr><th>Security</th><th>Period</th><th>Record date</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+        <tbody><tr><td colspan="6" class="empty">No coupons to show.</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-head"><h3>Redeem interest to my bank</h3></div>
+        <p class="muted">Your TRXI tokens are locked in the contract until the administrator confirms the bank payment, then they are burnt.</p>
+        <div class="balance-box"><span>Available TRXI</span><b id="inv-balance">-</b></div>
+        <form id="form-redeem" class="form">
+          <label>Amount (C$)<input name="amount" placeholder="6000.00" required></label>
+          <button class="btn btn-navy" type="submit">Request redemption</button>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>My redemption requests</h3></div>
+        <div id="my-redemptions"><p class="empty">None yet.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VERIFY ======================= -->
+<section class="tab-panel" id="tab-verify">
+  <div class="wrap section">
+    <div class="page-head"><div><span class="eyebrow dark">Public register</span><h2>Verify a certificate</h2></div></div>
+    <p class="muted narrow">Enter a security number (for example <code>TRX-MBS-001</code>) to check its terms, lifecycle status and the registered holder wallet straight from the blockchain.</p>
+    <form class="search" id="form-verify">
+      <input name="q" placeholder="TRX-MBS-001 or token ID" required>
+      <input name="wallet" placeholder="Optional: wallet to check (0x…)">
+      <button class="btn btn-navy" type="submit">Verify</button>
+    </form>
+    <div id="verify-result"></div>
+  </div>
+</section>
+
+<!-- ======================= ISSUER ======================= -->
+<section class="tab-panel" id="tab-issuer">
+  <div class="wrap section">
+    <div class="page-head"><div><span class="eyebrow dark">Issuer only</span><h2>Issuer desk</h2></div></div>
+
+    <div class="two-col wide-left">
+      <div class="panel">
+        <div class="panel-head"><h3>Issue a certificate</h3><span class="tag">ERC-721 mint</span></div>
+        <form id="form-issue" class="form">
+          <label>Certificate from Pinata
+            <select name="pick" id="cert-pick"></select>
+          </label>
+          <div class="row-inline">
+            <label class="grow">Pinata CID <input name="cid" id="issue-cid" placeholder="bafy… / Qm…"></label>
+            <button type="button" class="btn btn-ghost btn-sm" id="btn-load-cid">Load from Pinata</button>
+          </div>
+          <div class="grid3">
+            <label>Security ID <input name="securityId" required></label>
+            <label>Series <input name="series" required></label>
+            <label>Face value (C$) <input name="faceValue" type="number" min="1" required></label>
+            <label>Annual coupon (%) <input name="coupon" type="number" step="0.01" min="0" required></label>
+            <label>Payments per year
+              <select name="ppy"><option>1</option><option>2</option><option>4</option><option>12</option></select>
+            </label>
+            <label>Issue date <input name="issueDate" type="date" required></label>
+            <label>Maturity date <input name="maturityDate" type="date" required></label>
+          </div>
+          <label>Registered holder wallet (approved investor)
+            <input name="holder" list="approved-list" placeholder="0x…" required>
+            <datalist id="approved-list"></datalist>
+          </label>
+          <div class="issue-calc" id="issue-calc"></div>
+          <button class="btn btn-gold btn-lg" type="submit">Issue certificate</button>
+        </form>
+      </div>
+      <div class="panel preview-panel">
+        <div class="panel-head"><h3>Certificate preview</h3></div>
+        <div id="cert-preview" class="cert-preview"><p class="empty">Choose a certificate to preview it.</p></div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-head"><h3>Approval requests</h3></div>
+        <div id="applicants"><p class="empty">No requests.</p></div>
+        <form id="form-approve" class="form inline-form">
+          <input name="addr" placeholder="Approve a wallet manually: 0x…" required>
+          <button class="btn btn-navy btn-sm" type="submit">Approve</button>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Lifecycle</h3></div>
+        <ul class="checks">
+          <li><b>Active</b> — before maturity date, coupons are recorded on each record date</li>
+          <li><b>Matured</b> — waiting for principal repayment off chain</li>
+          <li><b>Redeemed</b> — issuer calls redeem, NFT is burnt, terms stay readable</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="block-title">Securities register</h3>
+    <div class="panel no-pad">
+      <table class="table" id="register-table">
+        <thead><tr><th>#</th><th>Security</th><th>Series</th><th>Holder</th><th>Face</th><th>Coupon</th><th>Maturity</th><th>Status</th><th></th></tr></thead>
+        <tbody><tr><td colspan="9" class="empty">No securities issued.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ADMIN ======================= -->
+<section class="tab-panel" id="tab-admin">
+  <div class="wrap section">
+    <div class="page-head"><div><span class="eyebrow dark">Administrator only</span><h2>Interest administration</h2></div></div>
+
+    <div class="kpis">
+      <div class="kpi"><span>Confirmed funding</span><b id="k-funded">-</b></div>
+      <div class="kpi"><span>Recorded entitlements</span><b id="k-entitled">-</b></div>
+      <div class="kpi"><span>Claimed by investors</span><b id="k-claimed">-</b></div>
+      <div class="kpi"><span>Settled to bank</span><b id="k-settled">-</b></div>
+      <div class="kpi accent"><span>Funding headroom</span><b id="k-available">-</b></div>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-head"><h3>Confirm funding received</h3></div>
+        <p class="muted">Record the cash received from mortgage payments. This sets the ceiling for entitlements.</p>
+        <form id="form-funding" class="form">
+          <div class="grid2">
+            <label>Amount (C$) <input name="amount" required placeholder="6000.00"></label>
+            <label>Bank reference <input name="ref" required placeholder="SCU-CASH-2026-11"></label>
+          </div>
+          <button class="btn btn-navy" type="submit">Confirm funding</button>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>How amounts are worked out</h3></div>
+        <p class="formula">coupon = face value × yearly rate ÷ payments per year</p>
+        <p class="muted">Example: C$100,000 × 6.00% ÷ 1 = <b>C$6,000.00</b> = 6,000 TRXI. The holder is read from the ERC-721 contract on the record date.</p>
+      </div>
+    </div>
+
+    <h3 class="block-title">Coupons due for recording</h3>
+    <div class="panel no-pad">
+      <table class="table" id="due-table">
+        <thead><tr><th>Security</th><th>Period</th><th>Record date</th><th>Holder</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+        <tbody><tr><td colspan="7" class="empty">Nothing due.</td></tr></tbody>
+      </table>
+    </div>
+
+    <h3 class="block-title">Redemption queue</h3>
+    <div class="panel no-pad">
+      <table class="table" id="redeem-table">
+        <thead><tr><th>ID</th><th>Investor</th><th>Amount</th><th>Requested</th><th>Status</th><th>Bank reference / action</th></tr></thead>
+        <tbody><tr><td colspan="6" class="empty">No requests.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <div class="logo light"><span class="logo-text"><b>Society</b> Credit Union<small>Tranchoryx Securities Platform</small></span></div>
+      <p>A member-owned financial co-operative serving households, small businesses and farms in Southwestern Ontario since 2013.</p>
+    </div>
+    <div>
+      <h5>Platform</h5>
+      <p>ERC-721 security register<br>ERC-20 interest entitlements<br>MetaMask wallets · Pinata IPFS certificates</p>
+    </div>
+    <div>
+      <h5>Important</h5>
+      <p>Educational prototype only. Not legal title and not a real financial instrument. TRXI tokens are records of entitlement, not Canadian dollars. Personal, bank and borrower data stays off-chain.</p>
+    </div>
+  </div>
+  <div class="wrap footer-bottom"><a href="index.html">← Project home</a> · <a href="glowrist.html">Glowrist florist</a></div>
+</footer>
+
+<!-- transfer modal -->
+<div class="modal" id="modal-transfer">
+  <div class="modal-card">
+    <button class="modal-x" data-close-modal>×</button>
+    <h3>Transfer certificate</h3>
+    <p class="muted">The buyer's wallet must already be approved by the issuer. Payment and legal checks happen off-chain. Interest already recorded stays with you.</p>
+    <form id="form-transfer" class="form">
+      <input type="hidden" name="tokenId">
+      <label>Security <input name="label" disabled></label>
+      <label>New holder wallet <input name="to" required placeholder="0x…"></label>
+      <button class="btn btn-navy" type="submit">Transfer</button>
+    </form>
+  </div>
+</div>
+
+<!-- settings modal -->
+<div class="modal" id="modal-settings">
+  <div class="modal-card wide">
+    <button class="modal-x" data-close-modal>×</button>
+    <h3>Settings</h3>
+    <p class="muted">Saved in this browser only. Empty fields use the values in <code>js/config.js</code>.</p>
+    <div class="form">
+      <div class="grid2">
+        <label>TranchoryxSecurity (ERC-721) <input id="st-sec" placeholder="0x…"></label>
+        <label>TranchoryxInterest (ERC-20) <input id="st-int" placeholder="0x…"></label>
+        <label>Network
+          <select id="st-chain">
+            <option value="11155111">Sepolia (11155111)</option>
+            <option value="1337">Ganache (1337)</option>
+            <option value="5777">Ganache (5777)</option>
+            <option value="31337">Hardhat (31337)</option>
+          </select>
+        </label>
+        <label>IPFS gateway <input id="st-gw" placeholder="https://gateway.pinata.cloud/ipfs/"></label>
+      </div>
+      <h4 class="sub">Pinata CIDs of your 5 certificates</h4>
+      <div id="st-certs" class="st-certs"></div>
+      <div class="btn-row">
+        <button class="btn btn-navy" id="st-save">Save settings</button>
+        <button class="btn btn-ghost" id="st-reset">Reset to config.js</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/abis.js"></script>
+<script src="js/common.js"></script>
+<script src="js/society.js"></script>
+</body>
+</html>
